@@ -4,12 +4,12 @@
 \alias{get_rand_quote}
 \title{get_rand_quote}
 \usage{
-get_rand_quote(n = 1, li_ref = kaamelott_citations)
+get_rand_quote(n = 1, perso = NULL)
 }
 \arguments{
 \item{n}{nombre de citations}
 
-\item{li_ref}{liste des quotes de l'api}
+\item{perso}{OPTIONNEL, spécifier un nom de pesonnage, ou plusieurs avec un vecteur}
 }
 \description{
 Génère n citations Kaamelott formattées pour terminal

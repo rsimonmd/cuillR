@@ -2,21 +2,34 @@
 #' @description Génère n citations Kaamelott formattées pour terminal
 #'
 #' @param n nombre de citations
-#' @param li_ref liste des quotes de l'api
-#' @importFrom purrr map
+#' @param perso OPTIONNEL, spécifier un nom de pesonnage, ou plusieurs avec un vecteur
 #'
 #' @export
-get_rand_quote <- function(n = 1, li_ref = kaamelott_citations){
+get_rand_quote <- function(n = 1, perso = NULL){
 
-    rand_num <- sample(x = 1:length(li_ref), size = n, replace = FALSE)
+    stopifnot(
+        is.numeric(n),
+        is.null(perso) | is.character(perso)
+    )
+
+    index <- 1:length(kaamelott_citations)
+
+    if (!is.null(perso)) {
+
+        index <- personnages_ref[personnages_ref$perso %in% perso,]$which
+        n <- if (length(index) > n) { n } else { length(index) }
+
+    }
+
+    rand_num <- sample(x = index, size = n, replace = FALSE)
 
     res <-
-        purrr::map(
-            .x = rand_num,
-            .f = ~{
+        lapply(
+            X = rand_num,
+            FUN = function(x){
                 paste(
                     unlist(
-                        li_ref[.x]
+                        kaamelott_citations[x]
                     )[c("citation", "infos.personnage")],
                     collapse = "\n\n"
                 )
