@@ -1,9 +1,10 @@
-Package: kaamelottr
+Package: cuillR
 Title: Wrapper R API Kamelott
 Version: 1.0.0
 Authors@R: 
     person("Raphael", "Simon", , "raphael.simon.contact@gmail.com", role = c("aut", "cre"))
-Description: Get Kaamelott quotes from the API.
+Description: Soliciter des citations de Kaamelott. Réalisé grâce à l'API
+    Kaamelott.
 License: MIT + file LICENSE
 Depends: 
     R (>= 2.10)
